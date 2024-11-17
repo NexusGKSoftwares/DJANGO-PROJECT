@@ -1,21 +1,36 @@
-<!-- hotel_booking/templates/add_room.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Room</title>
-</head>
-<body>
-    <h1>Add a New Room</h1>
+<!-- hotel_booking/templates/hotel_booking/add_room.html -->
+{% extends 'hotel_booking/base.html' %}
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Room</button>
-    </form>
+{% block title %}Add Room - Hotel Booking{% endblock %}
 
-    <br><br>
-    <a href="{% url 'available_rooms' %}">View Available Rooms</a>
-</body>
-</html>
+{% block content %}
+    <div class="container">
+        <h2 class="text-center mb-4">Add a New Room</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name">Room Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter room name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Room Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter room description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price per Night ($)</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Enter price per night" required>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Room Image</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Add Room</button>
+        </form>
+    </div>
+{% endblock %}
