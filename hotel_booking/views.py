@@ -113,3 +113,12 @@ def admin_home(request):
     rooms = Room.objects.all()
     bookings = Booking.objects.all()
     return render(request, 'hotel_booking/admin_home.html', {'rooms': rooms, 'bookings': bookings})
+def delete_room(request, id):
+    # Get the room object or 404 if not found
+    room = get_object_or_404(Room, id=id)
+    
+    # Delete the room
+    room.delete()
+    
+    # Redirect to the admin_home page after deletion
+    return redirect('admin_home')
