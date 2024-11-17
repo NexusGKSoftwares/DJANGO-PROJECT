@@ -1,0 +1,21 @@
+<!-- hotel_booking/templates/add_room.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Room</title>
+</head>
+<body>
+    <h1>Add a New Room</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Room</button>
+    </form>
+
+    <br><br>
+    <a href="{% url 'available_rooms' %}">View Available Rooms</a>
+</body>
+</html>
