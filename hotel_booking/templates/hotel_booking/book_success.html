@@ -1,0 +1,21 @@
+<!-- hotel_booking/templates/hotel_booking/booking_success.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Success</title>
+</head>
+<body>
+    <h1>Your Booking was Successful!</h1>
+    <p>Thank you for booking with us. Your room reservation has been confirmed.</p>
+    <p>Booking details:</p>
+    <ul>
+        <li>Room: {{ booking.room.room_number }}</li>
+        <li>Check-in Date: {{ booking.check_in_date }}</li>
+        <li>Check-out Date: {{ booking.check_out_date }}</li>
+        <li>Total Price: ${{ booking.total_price }}</li>
+    </ul>
+    <p>We look forward to welcoming you!</p>
+</body>
+</html>
