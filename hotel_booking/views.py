@@ -4,8 +4,8 @@ from .models import Room, Booking
 from .forms import AddRoomForm  # Import the AddRoomForm
 
 def index(request):
-    return render(request, 'hotel_booking/index.html')
-
+    rooms = Room.objects.all()  # Fetch all rooms from the database
+    return render(request, 'hotel_booking/index.html', {'rooms': rooms})
 def add_room(request):
     if request.method == 'POST':
         form = AddRoomForm(request.POST, request.FILES)
