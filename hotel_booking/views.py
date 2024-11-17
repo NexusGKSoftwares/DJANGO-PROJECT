@@ -3,6 +3,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Booking
 from .forms import BookingForm
 
+
+def index(request):
+    return render(request, 'hotel_booking/index.html')
 def available_rooms(request):
     rooms = Room.objects.filter(availability=True)
     return render(request, 'hotel_booking/available_rooms.html', {'rooms': rooms})
