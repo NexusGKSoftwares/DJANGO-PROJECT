@@ -1,0 +1,25 @@
+<!-- hotel_booking/templates/hotel_booking/book_room.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Room</title>
+</head>
+<body>
+    <h1>Book Room {{ room.room_number }}</h1>
+    <p>Room Type: {{ room.room_type }} - ${{ room.price_per_night }} per night</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Book Now</button>
+    </form>
+
+    <h2>Booking Summary</h2>
+    <p><strong>Check-in Date:</strong> {{ form.check_in_date.value }}</p>
+    <p><strong>Check-out Date:</strong> {{ form.check_out_date.value }}</p>
+
+    <p>Total Price: ${{ form.check_out_date.value|date:"U" - form.check_in_date.value|date:"U" }} * {{ room.price_per_night }} = ${{ form.total_price.value }}</p>
+</body>
+</html>
