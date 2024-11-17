@@ -1,26 +1,29 @@
-<!-- hotel_booking/templates/hotel_booking/available_rooms.html -->
 {% extends 'hotel_booking/base.html' %}
 
 {% block title %}Available Rooms - Hotel Booking{% endblock %}
 
 {% block content %}
-    <h2 class="text-center mb-4">Available Rooms</h2>
+<div class="container my-5">
+    <h2 class="text-center mb-5">Explore Our Available Rooms</h2>
 
-    <div class="row">
+    <div class="row gy-4">
         {% for room in rooms %}
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/400" class="card-img-top" alt="{{ room.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ room.name }}</h5>
-                        <p class="card-text">{{ room.description }}</p>
-                        <p><strong>Price per Night:</strong> Kshs. {{ room.price }}</p>
-                        <a href="{% url 'book_room' room.id %}" class="btn btn-primary">Book Now</a>
-                    </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}" 
+                    onerror="this.src='https://via.placeholder.com/400';">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-primary">{{ room.name }}</h5>
+                    <p class="card-text text-muted">{{ room.description|truncatewords:20 }}</p>
+                    <p class="fw-bold mt-auto">
+                        <span class="text-secondary">Price per Night:</span> 
+                        <span class="text-success">Kshs. {{ room.price }}</span>
+                    </p>
+                    <a href="{% url 'book_room' room.id %}" class="btn btn-outline-primary w-100">Book Now</a>
                 </div>
             </div>
+        </div>
         {% endfor %}
-        
-        
     </div>
+</div>
 {% endblock %}
