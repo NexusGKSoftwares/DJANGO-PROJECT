@@ -22,16 +22,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:index' %}">Dashboard</a>
+                    <a class="nav-link" href="{% url 'admin_home' %}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:hotel_booking_room_change' 0 %}">Manage Rooms</a>
+                    <a class="nav-link" href="{% url 'manage_rooms' 0 %}">Manage Rooms</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:approve_bookings' %}">Approve Bookings</a>
+                    <a class="nav-link" href="{% url 'approve_bookings' %}">Approve Bookings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">Go to Website</a>
+                    <a class="nav-link" href="{% url 'admin_home' %}">Go to Website</a>
                 </li>
             </ul>
         </div>

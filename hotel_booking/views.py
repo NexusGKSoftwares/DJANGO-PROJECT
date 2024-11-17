@@ -67,7 +67,7 @@ def add_room(request):
         form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('admin:manage_rooms')  # Redirect to the room list page
+            return redirect('hotel_booking:manage_rooms')  # Redirect to the room list page
     else:
         form = RoomForm()
     return render(request, 'add_room.html', {'form': form})
@@ -79,7 +79,7 @@ def edit_room(request, room_id):
         form = RoomForm(request.POST, request.FILES, instance=room)
         if form.is_valid():
             form.save()
-            return redirect('admin:manage_rooms')  # Redirect to the room list page
+            return redirect('hotel_booking:manage_rooms')  # Redirect to the room list page
     else:
         form = RoomForm(instance=room)
     return render(request, 'edit_room.html', {'form': form, 'room': room})
@@ -97,7 +97,7 @@ def approve_booking(request, booking_id):
         form = BookingApprovalForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
-            return redirect('admin:view_bookings')  # Redirect to the bookings list
+            return redirect('hotel_booking:view_bookings')  # Redirect to the bookings list
     else:
         form = BookingApprovalForm(instance=booking)
     
