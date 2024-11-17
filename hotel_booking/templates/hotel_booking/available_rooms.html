@@ -1,0 +1,10 @@
+<!-- hotel_booking/templates/hotel_booking/available_rooms.html -->
+<h1>Available Rooms</h1>
+<ul>
+    {% for room in rooms %}
+        <li>
+            Room {{ room.room_number }} - {{ room.room_type }} - ${{ room.price_per_night }} per night
+            <a href="{% url 'book_room' room.id %}">Book Now</a>
+        </li>
+    {% endfor %}
+</ul>
