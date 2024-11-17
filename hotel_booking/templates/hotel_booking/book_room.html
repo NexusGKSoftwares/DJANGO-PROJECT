@@ -1,25 +1,37 @@
 <!-- hotel_booking/templates/hotel_booking/book_room.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Room</title>
-</head>
-<body>
-    <h1>Book Room {{ room.room_number }}</h1>
-    <p>Room Type: {{ room.room_type }} - ${{ room.price_per_night }} per night</p>
+{% extends 'hotel_booking/base.html' %}
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Book Now</button>
-    </form>
+{% block title %}Book Room - Hotel Booking{% endblock %}
 
-    <h2>Booking Summary</h2>
-    <p><strong>Check-in Date:</strong> {{ form.check_in_date.value }}</p>
-    <p><strong>Check-out Date:</strong> {{ form.check_out_date.value }}</p>
+{% block content %}
+    <h2 class="text-center mb-4">Book Your Room</h2>
 
-    <p>Total Price: ${{ form.check_out_date.value|date:"U" - form.check_in_date.value|date:"U" }} * {{ room.price_per_night }} = ${{ form.total_price.value }}</p>
-</body>
-</html>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ room.name }}</h5>
+                    <p class="card-text">{{ room.description }}</p>
+                    <p><strong>Price per Night:</strong> ${{ room.price }}</p>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duration (in nights)</label>
+                            <input type="number" class="form-control" id="duration" name="duration" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
