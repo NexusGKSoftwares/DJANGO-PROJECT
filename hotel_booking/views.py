@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Room, Booking
 from .forms import AddRoomForm, BookingApprovalForm, RoomForm  # Import the AddRoomForm
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     rooms = Room.objects.all()  # Fetch all rooms from the database
@@ -100,3 +101,9 @@ def approve_booking(request, booking_id):
 def view_bookings(request):
     bookings = Booking.objects.all()
     return render(request, 'admin/view_bookings.html', {'bookings': bookings})
+@login_required
+def admin_home(request):
+    # Get all rooms and bookings
+    rooms = Room.objects.all()
+    bookings = Booking.objects.all()
+    return render(request, 'hotel_booking/admin_home.html', {'rooms': rooms, 'bookings': bookings})

@@ -17,6 +17,7 @@ class Booking(models.Model):
     check_out_date = models.DateField(default='2024-11-17')  # Added check-out date field
     duration = models.PositiveIntegerField()  # Duration in nights
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
-
+    approved = models.BooleanField(default=False)  # Make sure this field exists!
+    
     def __str__(self):
         return f"Booking by {self.customer} for {self.room.name}"
