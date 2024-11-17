@@ -70,7 +70,7 @@ def add_room(request):
             return redirect('admin:manage_rooms')  # Redirect to the room list page
     else:
         form = RoomForm()
-    return render(request, 'admin/add_room.html', {'form': form})
+    return render(request, 'add_room.html', {'form': form})
 
 # Admin View: Edit Room
 def edit_room(request, room_id):
@@ -82,12 +82,12 @@ def edit_room(request, room_id):
             return redirect('admin:manage_rooms')  # Redirect to the room list page
     else:
         form = RoomForm(instance=room)
-    return render(request, 'admin/edit_room.html', {'form': form, 'room': room})
+    return render(request, 'edit_room.html', {'form': form, 'room': room})
 
 # Admin View: Manage All Rooms
 def manage_rooms(request):
     rooms = Room.objects.all()
-    return render(request, 'admin/manage_rooms.html', {'rooms': rooms})
+    return render(request, 'manage_rooms.html', {'rooms': rooms})
 
 # Admin View: Approve or Reject Booking
 def approve_booking(request, booking_id):
@@ -101,12 +101,12 @@ def approve_booking(request, booking_id):
     else:
         form = BookingApprovalForm(instance=booking)
     
-    return render(request, 'admin/approve_booking.html', {'booking': booking, 'form': form})
+    return render(request, 'approve_booking.html', {'booking': booking, 'form': form})
 
 # Admin View: View All Bookings
 def view_bookings(request):
     bookings = Booking.objects.all()
-    return render(request, 'admin/view_bookings.html', {'bookings': bookings})
+    return render(request, 'view_bookings.html', {'bookings': bookings})
 @login_required
 def admin_home(request):
     # Get all rooms and bookings
