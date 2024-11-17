@@ -18,7 +18,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.name }}</h5>
                                 <p class="card-text">{{ room.description }}</p>
-                                <p><strong>Price per night:</strong> ${{ room.price_per_night }}</p>
+                                <p><strong>Price per night:</strong> Kshs. {{ room.price_per_night }}</p>
                                 <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">Edit</a>
                                 <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">Delete</a>
                             </div>
@@ -40,7 +40,7 @@
                                 <p><strong>User:</strong> {{ booking.user.username }}</p>
                                 <p><strong>Check-in:</strong> {{ booking.check_in }}</p>
                                 <p><strong>Check-out:</strong> {{ booking.check_out }}</p>
-                                <p><strong>Total Cost:</strong> ${{ booking.total_cost }}</p>
+                                <p><strong>Total Cost:</strong> Kshs. {{ booking.total_cost }}</p>
                                 <form method="POST" action="{% url 'approve_booking' booking.id %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-success" {% if booking.approved %}disabled{% endif %}>
