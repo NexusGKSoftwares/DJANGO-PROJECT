@@ -62,18 +62,12 @@ def room_details(request, room_id):
     room = Room.objects.get(id=room_id)
     return render(request, 'hotel_booking/room_details.html', {'room': room})
 
-# Admin View: Edit Room
 def edit_room(request, room_id):
-    room = get_object_or_404(Room, id=room_id)
+    room = get_object_or_404(Room, pk=room_id)
     if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES, instance=room)
-        if form.is_valid():
-            form.save()
-            return redirect('hotel_booking:manage_rooms')  # Redirect to the room list page
-    else:
-        form = RoomForm(instance=room)
-    return render(request, 'edit_room.html', {'form': form, 'room': room})
-
+        # Handle form submission here
+        pass
+    return render(request, 'hotel_booking/edit_room.html', {'room': room})
 # Admin View: Manage All Rooms
 def manage_rooms(request):
     rooms = Room.objects.all()
