@@ -61,16 +61,6 @@ def booking_success(request, booking_id):
 def room_details(request, room_id):
     room = Room.objects.get(id=room_id)
     return render(request, 'hotel_booking/room_details.html', {'room': room})
-# Admin View: Add Room
-def add_room(request):
-    if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('hotel_booking:manage_rooms')  # Redirect to the room list page
-    else:
-        form = RoomForm()
-    return render(request, 'add_room.html', {'form': form})
 
 # Admin View: Edit Room
 def edit_room(request, room_id):

@@ -1,6 +1,5 @@
 <!-- hotel_booking/templates/admin/base_site.html -->
 {% if user.is_staff %}
-<a href="{% url 'admin_home' %}">Admin Dashboard</a>
 {% endif %}
 
 <!DOCTYPE html>
@@ -24,12 +23,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'admin_home' %}">Dashboard</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'manage_rooms' 0 %}">Manage Rooms</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'approve_bookings' %}">Approve Bookings</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'admin_home' %}">Go to Website</a>
                 </li>
