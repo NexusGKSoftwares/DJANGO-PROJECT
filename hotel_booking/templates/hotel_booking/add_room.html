@@ -1,36 +1,32 @@
-<!-- hotel_booking/templates/hotel_booking/add_room.html -->
-{% extends 'hotel_booking/base.html' %}
+<!-- hotel_booking/templates/admin/add_room.html -->
+{% extends 'admin/base_site.html' %}
 
-{% block title %}Add Room - Hotel Booking{% endblock %}
+{% block title %}Add New Room - Admin Panel{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2 class="text-center mb-4">Add a New Room</h2>
+    <h1>Add New Room</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Room Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
 
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            <div class="form-group">
-                <label for="name">Room Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter room name" required>
-            </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Room Description</label>
+            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+        </div>
 
-            <div class="form-group">
-                <label for="description">Room Description</label>
-                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter room description" required></textarea>
-            </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Room Price</label>
+            <input type="number" class="form-control" id="price" name="price" required>
+        </div>
 
-            <div class="form-group">
-                <label for="price">Price per Night (Kshs.)</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Enter price per night" required>
-            </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Room Image</label>
+            <input type="file" class="form-control" id="image" name="image" required>
+        </div>
 
-            <div class="form-group">
-                <label for="image">Room Image</label>
-                <input type="file" class="form-control-file" id="image" name="image" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Add Room</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-primary">Add Room</button>
+    </form>
 {% endblock %}
