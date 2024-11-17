@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ room.name }}</h5>
                     <p class="card-text">{{ room.description|truncatewords:20 }}</p>
-                    <p class="text-muted"><strong>Price:</strong> ${{ room.price }} per night</p>
+                    <p class="text-muted"><strong>Price:</strong> Kshs. {{ room.price }} per night</p>
                     <a href="{% url 'room_details' room.id %}" class="btn btn-primary">See Details</a>
                 </div>
             </div>

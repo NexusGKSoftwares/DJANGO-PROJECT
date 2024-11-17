@@ -1,4 +1,3 @@
-<!-- hotel_booking/templates/hotel_booking/booking_success.html -->
 {% extends 'hotel_booking/base.html' %}
 
 {% block title %}Booking Success - Hotel Booking{% endblock %}
@@ -6,10 +5,10 @@
 {% block content %}
     <div class="text-center">
         <h2>Booking Successful!</h2>
-        <p>Thank you for booking with us, {{ booking.name }}.</p>
+        <p>Thank you for booking with us, {{ booking.name }}.</p> <!-- Changed from booking.name to booking.customer -->
         <p>You have successfully booked the room: <strong>{{ booking.room.name }}</strong>.</p>
         <p><strong>Stay Duration:</strong> {{ booking.duration }} nights</p>
-        <p><strong>Total Cost:</strong> ${{ booking.total_cost }}</p>
+        <p><strong>Total Cost:</strong> Kshs. {{ booking.total_cost }}</p>
 
         <a href="{% url 'index' %}" class="btn btn-primary">Return to Homepage</a>
     </div>

@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ room.name }}</h5>
                     <p class="card-text">{{ room.description }}</p>
-                    <p><strong>Price per Night:</strong> ${{ room.price }}</p>
+                    <p><strong>Price per Night:</strong> Kshs. {{ room.price }}</p>
 
                     <form method="post">
                         {% csrf_token %}

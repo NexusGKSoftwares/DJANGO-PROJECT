@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <h2 class="mb-3">{{ room.name }}</h2>
             <p>{{ room.description }}</p>
-            <p><strong>Price:</strong> ${{ room.price }} per night</p>
+            <p><strong>Price:</strong> Kshs. {{ room.price }} per night</p>
             <a href="{% url 'book_room' room.id %}" class="btn btn-primary btn-lg mt-3">Book Now</a>
         </div>
     </div>
