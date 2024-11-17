@@ -1,22 +1,24 @@
 <!-- hotel_booking/templates/hotel_booking/available_rooms.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Rooms</title>
-</head>
-<body>
-    <h1>Available Rooms</h1>
-    <ul>
+{% extends 'hotel_booking/base.html' %}
+
+{% block title %}Available Rooms - Hotel Booking{% endblock %}
+
+{% block content %}
+    <h2 class="text-center mb-4">Available Rooms</h2>
+
+    <div class="row">
         {% for room in rooms %}
-            <li>
-                Room {{ room.room_number }} - {{ room.room_type }} - ${{ room.price_per_night }} per night
-                <a href="{% url 'book_room' room.id %}">Book Now</a>
-            </li>
-        {% empty %}
-            <li>No rooms available at the moment.</li>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/400" class="card-img-top" alt="{{ room.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ room.name }}</h5>
+                        <p class="card-text">{{ room.description }}</p>
+                        <p><strong>Price per Night:</strong> ${{ room.price }}</p>
+                        <a href="{% url 'book_room' room.id %}" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+{% endblock %}
