@@ -1,24 +1,36 @@
 # hotel_booking/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 
-from hotel_booking.forms import RoomForm
 from .models import Room, Booking
 from django.http import HttpResponse
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 
 def index(request):
     return render(request, 'hotel_booking/index.html')
 
 def add_room(request):
-    if request.method == "POST":
-        form = RoomForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('available_rooms')  # Redirect to available rooms page
-    else:
-        form = RoomForm()
+    if request.method == 'POST':
+        name = request.POST['name']
+        description = request.POST['description']
+        price = request.POST['price']
+        image = request.FILES['image']
 
-    return render(request, 'hotel_booking/add_room.html', {'form': form})
+        # Save the room information in the database
+        fs = FileSystemStorage()
+        filename = fs.save(image.name, image)
+        room_url = fs.url(filename)
+
+        room = Room.objects.create(
+            name=name,
+            description=description,
+            price=price,
+            image=room_url
+        )
+        
+        return redirect('available_rooms')  # Redirect to available rooms page after successful submission
+    
+    return render(request, 'hotel_booking/add_room.html')
 
 def available_rooms(request):
     rooms = Room.objects.all()  # Fetch all available rooms
