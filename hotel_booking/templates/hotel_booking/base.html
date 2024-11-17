@@ -1,4 +1,3 @@
-<!-- hotel_booking/templates/hotel_booking/base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +7,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
     <style>
         body {
-            padding-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 70px; /* Ensure space for the sticky navbar */
         }
         .navbar {
-            margin-bottom: 20px;
+            background-color: #f8f9fa; /* Light gray */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #007bff; /* Primary color */
+        }
+        .navbar-brand:hover {
+            color: #0056b3;
+        }
+        footer {
+            background-color: #f8f9fa; /* Light gray */
+            border-top: 1px solid #eaeaea;
+        }
+        footer p, footer a {
+            margin: 0;
+            color: #6c757d; /* Muted text */
+        }
+        footer a:hover {
+            text-decoration: none;
+            color: #007bff; /* Primary color */
         }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">Hotel Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -44,8 +64,26 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-4">
-        <p>&copy; 2024 Hotel Booking System | All rights reserved.</p>
+    <footer class="text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 Hotel Booking System | All rights reserved.</p>
+            <div>
+                <a href="#" class="me-3">Privacy Policy</a>
+                <a href="#" class="me-3">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="mt-3">
+                <a href="#" class="text-muted me-3">
+                    <i class="bi bi-facebook"></i> Facebook
+                </a>
+                <a href="#" class="text-muted me-3">
+                    <i class="bi bi-twitter"></i> Twitter
+                </a>
+                <a href="#" class="text-muted">
+                    <i class="bi bi-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
