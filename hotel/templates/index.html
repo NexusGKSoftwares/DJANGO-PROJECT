@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Hotel Booking{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1>Welcome to Our Hotel</h1>
+        <p>Your home away from home</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'available_rooms' %}" role="button">Book a Room</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/400" class="card-img-top" alt="Room 1">
+                <div class="card-body">
+                    <h5 class="card-title">Deluxe Room</h5>
+                    <p class="card-text">A luxurious room with modern amenities and a beautiful view.</p>
+                    <a href="{% url 'available_rooms' %}" class="btn btn-primary">See Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/400" class="card-img-top" alt="Room 2">
+                <div class="card-body">
+                    <h5 class="card-title">Standard Room</h5>
+                    <p class="card-text">A comfortable room perfect for both business and leisure stays.</p>
+                    <a href="{% url 'available_rooms' %}" class="btn btn-primary">See Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/400" class="card-img-top" alt="Room 3">
+                <div class="card-body">
+                    <h5 class="card-title">Family Suite</h5>
+                    <p class="card-text">A spacious suite ideal for family stays with extra comfort.</p>
+                    <a href="{% url 'available_rooms' %}" class="btn btn-primary">See Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
