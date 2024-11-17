@@ -11,4 +11,10 @@ urlpatterns = [
     path('booking_success/<int:booking_id>/', views.booking_success, name='booking_success'),
     path('add-room/', views.add_room, name='add_room'),
     path('room/<int:room_id>/', views.room_details, name='room_details'),
+    path('admin/rooms/', views.manage_rooms, name='manage_rooms'),
+    path('admin/rooms/add/', views.add_room, name='add_room'),
+    path('admin/rooms/edit/<int:room_id>/', views.edit_room, name='edit_room'),
+    path('admin/bookings/', views.view_bookings, name='view_bookings'),
+    path('admin/bookings/approve/<int:booking_id>/', views.approve_booking, name='approve_booking'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
