@@ -1,0 +1,35 @@
+<!-- hotel_booking/templates/admin/edit_room.html -->
+{% extends 'admin/base_site.html' %}
+
+{% block title %}Edit Room - Admin Panel{% endblock %}
+
+{% block content %}
+    <h1>Edit Room: {{ room.name }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Room Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ room.name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Room Description</label>
+            <textarea class="form-control" id="description" name="description" rows="4" required>{{ room.description }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Room Price</label>
+            <input type="number" class="form-control" id="price" name="price" value="{{ room.price }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Room Image</label>
+            <input type="file" class="form-control" id="image" name="image">
+            <div>
+                <img src="{{ room.image.url }}" alt="{{ room.name }}" style="width: 150px; margin-top: 10px;">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+{% endblock %}
