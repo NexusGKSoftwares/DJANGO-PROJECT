@@ -57,3 +57,6 @@ def booking_success(request, booking_id):
         'email': booking.email,
     }
     return render(request, 'hotel_booking/booking_success.html', context)
+def room_details(request, room_id):
+    room = Room.objects.get(id=room_id)
+    return render(request, 'hotel_booking/room_details.html', {'room': room})
