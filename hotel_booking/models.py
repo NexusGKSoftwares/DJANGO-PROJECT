@@ -11,7 +11,7 @@ class Room(models.Model):
 
 class Booking(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    customer = models.CharField(max_length=100)  # Added customer name field
+    name = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField()
     check_in_date = models.DateField(default='2024-11-17')  # Added check-in date field
     check_out_date = models.DateField(default='2024-11-17')  # Added check-out date field

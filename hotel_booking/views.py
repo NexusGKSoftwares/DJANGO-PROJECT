@@ -49,5 +49,11 @@ def book_room(request, room_id):
     return render(request, 'hotel_booking/book_room.html', {'room': room})
 
 def booking_success(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id)
-    return render(request, 'hotel_booking/booking_success.html', {'booking': booking})
+    # Example data, replace with actual booking retrieval logic
+    booking = Booking.objects.get(id=booking_id)
+    context = {
+        'name': booking.name,
+        'room_name': booking.room.name,
+        'email': booking.email,
+    }
+    return render(request, 'hotel_booking/booking_success.html', context)
