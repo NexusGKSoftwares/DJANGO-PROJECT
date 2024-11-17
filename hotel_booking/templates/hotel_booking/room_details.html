@@ -1,0 +1,30 @@
+{% extends 'hotel_booking/base.html' %}
+
+{% block title %}{{ room.name }} - Room Details{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ room.image.url }}" class="img-fluid rounded" alt="{{ room.name }}" onerror="this.src='https://via.placeholder.com/600';">
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-3">{{ room.name }}</h2>
+            <p>{{ room.description }}</p>
+            <p><strong>Price:</strong> ${{ room.price }} per night</p>
+            <a href="{% url 'book_room' room.id %}" class="btn btn-primary btn-lg mt-3">Book Now</a>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h3>Room Amenities</h3>
+        <ul>
+            <li>Free Wi-Fi</li>
+            <li>Air Conditioning</li>
+            <li>Flat-screen TV</li>
+            <li>Room Service</li>
+            <li>Private Bathroom</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
