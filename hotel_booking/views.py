@@ -1,11 +1,24 @@
 # hotel_booking/views.py
 from django.shortcuts import render, get_object_or_404, redirect
+
+from hotel_booking.forms import RoomForm
 from .models import Room, Booking
 from django.http import HttpResponse
 from django.contrib import messages
 
 def index(request):
     return render(request, 'hotel_booking/index.html')
+
+def add_room(request):
+    if request.method == "POST":
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('available_rooms')  # Redirect to available rooms page
+    else:
+        form = RoomForm()
+
+    return render(request, 'hotel_booking/add_room.html', {'form': form})
 
 def available_rooms(request):
     rooms = Room.objects.all()  # Fetch all available rooms
