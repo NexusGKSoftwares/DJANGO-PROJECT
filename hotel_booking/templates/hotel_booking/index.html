@@ -3,24 +3,24 @@
 {% block title %}Home - Hotel Booking{% endblock %}
 
 {% block content %}
-<div class="jumbotron text-center bg-light py-5">
-    <h1 class="display-4">Welcome to Our Hotel</h1>
-    <p class="lead">Your home away from home</p>
-    <a class="btn btn-primary btn-lg" href="{% url 'available_rooms' %}" role="button">Book a Room</a>
+<div class="jumbotron text-center bg-light py-5 mb-5 shadow-lg">
+    <h1 class="display-4 fw-bold text-primary">Welcome to Our Hotel</h1>
+    <p class="lead text-muted">Your home away from home, where comfort meets elegance.</p>
+    <a class="btn btn-primary btn-lg px-4 py-2 mt-3 shadow" href="{% url 'available_rooms' %}" role="button">Book a Room</a>
 </div>
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Our Featured Rooms</h2>
-    <div class="row">
+    <h2 class="text-center mb-4 fw-bold text-secondary">Our Featured Rooms</h2>
+    <div class="row g-4">
         {% for room in rooms %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}" onerror="this.src='https://via.placeholder.com/400';">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0">
+                <img src="{{ room.image.url }}" class="card-img-top rounded-top" alt="{{ room.name }}" onerror="this.src='https://via.placeholder.com/400';">
                 <div class="card-body">
-                    <h5 class="card-title">{{ room.name }}</h5>
-                    <p class="card-text">{{ room.description|truncatewords:20 }}</p>
+                    <h5 class="card-title text-primary fw-bold">{{ room.name }}</h5>
+                    <p class="card-text text-muted">{{ room.description|truncatewords:20 }}</p>
                     <p class="text-muted"><strong>Price:</strong> Kshs. {{ room.price }} per night</p>
-                    <a href="{% url 'room_details' room.id %}" class="btn btn-primary">See Details</a>
+                    <a href="{% url 'room_details' room.id %}" class="btn btn-outline-primary w-100 mt-2">See Details</a>
                 </div>
             </div>
         </div>
