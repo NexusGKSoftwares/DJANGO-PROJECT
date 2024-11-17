@@ -1,36 +1,25 @@
-# hotel_booking/views.py
 from django.shortcuts import render, get_object_or_404, redirect
-
-from .models import Room, Booking
-from django.http import HttpResponse
 from django.contrib import messages
-from django.core.files.storage import FileSystemStorage
+from .models import Room, Booking
+from .forms import AddRoomForm  # Import the AddRoomForm
 
 def index(request):
     return render(request, 'hotel_booking/index.html')
 
 def add_room(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        description = request.POST['description']
-        price = request.POST['price']
-        image = request.FILES['image']
+        form = AddRoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()  # Automatically saves the room data, including the image
+            messages.success(request, 'Room added successfully!')
+            return redirect('available_rooms')  # Redirect to the available rooms page after successful submission
+        else:
+            # If the form is invalid, render the form with error messages
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = AddRoomForm()  # Empty form for GET request
 
-        # Save the room information in the database
-        fs = FileSystemStorage()
-        filename = fs.save(image.name, image)
-        room_url = fs.url(filename)
-
-        room = Room.objects.create(
-            name=name,
-            description=description,
-            price=price,
-            image=room_url
-        )
-        
-        return redirect('available_rooms')  # Redirect to available rooms page after successful submission
-    
-    return render(request, 'hotel_booking/add_room.html')
+    return render(request, 'hotel_booking/add_room.html', {'form': form})
 
 def available_rooms(request):
     rooms = Room.objects.all()  # Fetch all available rooms
