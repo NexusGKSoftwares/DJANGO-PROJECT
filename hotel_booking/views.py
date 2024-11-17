@@ -1,5 +1,5 @@
-
-from django.shortcuts import render, get_object_or_404
+# hotel_booking/views.py
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Room, Booking
 from .forms import BookingForm
 
@@ -19,4 +19,4 @@ def book_room(request, room_id):
             return redirect('booking_success')
     else:
         form = BookingForm()
-    return render(request, 'book_room.html', {'form': form, 'room': room})
+    return render(request, 'hotel_booking/book_room.html', {'form': form, 'room': room})
