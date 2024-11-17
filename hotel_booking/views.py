@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Room, Booking
-from .forms import AddRoomForm  # Import the AddRoomForm
+from .forms import AddRoomForm, BookingApprovalForm, RoomForm  # Import the AddRoomForm
 
 def index(request):
     rooms = Room.objects.all()  # Fetch all rooms from the database
@@ -54,3 +54,49 @@ def booking_success(request, booking_id):
 def room_details(request, room_id):
     room = Room.objects.get(id=room_id)
     return render(request, 'hotel_booking/room_details.html', {'room': room})
+# Admin View: Add Room
+def add_room(request):
+    if request.method == 'POST':
+        form = RoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('admin:manage_rooms')  # Redirect to the room list page
+    else:
+        form = RoomForm()
+    return render(request, 'admin/add_room.html', {'form': form})
+
+# Admin View: Edit Room
+def edit_room(request, room_id):
+    room = get_object_or_404(Room, id=room_id)
+    if request.method == 'POST':
+        form = RoomForm(request.POST, request.FILES, instance=room)
+        if form.is_valid():
+            form.save()
+            return redirect('admin:manage_rooms')  # Redirect to the room list page
+    else:
+        form = RoomForm(instance=room)
+    return render(request, 'admin/edit_room.html', {'form': form, 'room': room})
+
+# Admin View: Manage All Rooms
+def manage_rooms(request):
+    rooms = Room.objects.all()
+    return render(request, 'admin/manage_rooms.html', {'rooms': rooms})
+
+# Admin View: Approve or Reject Booking
+def approve_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    if request.method == 'POST':
+        form = BookingApprovalForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('admin:view_bookings')  # Redirect to the bookings list
+    else:
+        form = BookingApprovalForm(instance=booking)
+    
+    return render(request, 'admin/approve_booking.html', {'booking': booking, 'form': form})
+
+# Admin View: View All Bookings
+def view_bookings(request):
+    bookings = Booking.objects.all()
+    return render(request, 'admin/view_bookings.html', {'bookings': bookings})
