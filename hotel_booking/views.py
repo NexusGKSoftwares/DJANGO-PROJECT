@@ -1,8 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Room, Booking
-from .forms import AddRoomForm  # Import the AddRoomForm
+from .forms import AddRoomForm, BookingApprovalForm, RoomForm  # Import the AddRoomForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
+@staff_member_required
+def admin_home(request):
+    rooms = Room.objects.all()
+    bookings = Booking.objects.all()
+    return render(request, 'hotel_booking/admin_home.html', {'rooms': rooms, 'bookings': bookings})
 def index(request):
     rooms = Room.objects.all()  # Fetch all rooms from the database
     return render(request, 'hotel_booking/index.html', {'rooms': rooms})
@@ -54,3 +61,48 @@ def booking_success(request, booking_id):
 def room_details(request, room_id):
     room = Room.objects.get(id=room_id)
     return render(request, 'hotel_booking/room_details.html', {'room': room})
+
+def edit_room(request, room_id):
+    room = get_object_or_404(Room, pk=room_id)
+    if request.method == 'POST':
+        # Handle form submission here
+        pass
+    return render(request, 'hotel_booking/edit_room.html', {'room': room})
+# Admin View: Manage All Rooms
+def manage_rooms(request):
+    rooms = Room.objects.all()
+    return render(request, 'manage_rooms.html', {'rooms': rooms})
+
+# Admin View: Approve or Reject Booking
+def approve_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    if request.method == 'POST':
+        form = BookingApprovalForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('hotel_booking:view_bookings')  # Redirect to the bookings list
+    else:
+        form = BookingApprovalForm(instance=booking)
+    
+    return render(request, 'approve_booking.html', {'booking': booking, 'form': form})
+
+# Admin View: View All Bookings
+def view_bookings(request):
+    bookings = Booking.objects.all()
+    return render(request, 'view_bookings.html', {'bookings': bookings})
+@login_required
+def admin_home(request):
+    # Get all rooms and bookings
+    rooms = Room.objects.all()
+    bookings = Booking.objects.all()
+    return render(request, 'hotel_booking/admin_home.html', {'rooms': rooms, 'bookings': bookings})
+def delete_room(request, id):
+    # Get the room object or 404 if not found
+    room = get_object_or_404(Room, id=id)
+    
+    # Delete the room
+    room.delete()
+    
+    # Redirect to the admin_home page after deletion
+    return redirect('admin_home')

@@ -1,0 +1,43 @@
+<!-- hotel_booking/templates/admin/view_bookings.html -->
+{% extends 'admin/base_site.html' %}
+
+{% block title %}View Bookings - Admin Panel{% endblock %}
+
+{% block content %}
+    <h1>View All Bookings</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>User Name</th>
+                <th>Room</th>
+                <th>Duration</th>
+                <th>Total Cost</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.id }}</td>
+                    <td>{{ booking.user.name }}</td>
+                    <td>{{ booking.room.name }}</td>
+                    <td>{{ booking.duration }} nights</td>
+                    <td>${{ booking.total_cost }}</td>
+                    <td>
+                        {% if booking.approved %}
+                            <span class="badge badge-success">Approved</span>
+                        {% else %}
+                            <span class="badge badge-warning">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'admin:approve_booking' booking.id %}" class="btn btn-primary">View Details</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
