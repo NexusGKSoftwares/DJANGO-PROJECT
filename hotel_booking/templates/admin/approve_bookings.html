@@ -1,0 +1,46 @@
+<!-- hotel_booking/templates/admin/approve_bookings.html -->
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+    <h1>Approve Bookings</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>User Name</th>
+                <th>Room</th>
+                <th>Duration</th>
+                <th>Total Cost</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.id }}</td>
+                    <td>{{ booking.user.name }}</td>
+                    <td>{{ booking.room.name }}</td>
+                    <td>{{ booking.duration }} nights</td>
+                    <td>${{ booking.total_cost }}</td>
+                    <td>
+                        {% if booking.approved %}
+                            <span class="badge badge-success">Approved</span>
+                        {% else %}
+                            <span class="badge badge-warning">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not booking.approved %}
+                            <a href="{% url 'admin:approve_booking' booking.id %}?action=approve" class="btn btn-success">Approve</a>
+                            <a href="{% url 'admin:approve_booking' booking.id %}?action=reject" class="btn btn-danger">Reject</a>
+                        {% else %}
+                            <span class="text-muted">No actions available</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

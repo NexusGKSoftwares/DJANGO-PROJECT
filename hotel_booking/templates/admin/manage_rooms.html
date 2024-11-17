@@ -1,0 +1,36 @@
+<!-- hotel_booking/templates/admin/manage_rooms.html -->
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+    <h1>Manage Rooms</h1>
+    
+    <a href="{% url 'admin:hotel_booking_room_add' %}" class="btn btn-success mb-3">Add New Room</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.name }}</td>
+                    <td>{{ room.description }}</td>
+                    <td>${{ room.price }}</td>
+                    <td>
+                        <img src="{{ room.image.url }}" alt="{{ room.name }}" style="width: 100px; height: 100px;">
+                    </td>
+                    <td>
+                        <a href="{% url 'admin:hotel_booking_room_change' room.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'admin:hotel_booking_room_delete' room.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
