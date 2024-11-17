@@ -12,9 +12,17 @@ class AddRoomForm(forms.ModelForm):
         model = Room
         fields = ['name', 'description', 'price', 'image']
         
-    # Optional: Add custom validation if necessary
     def clean_price(self):
         price = self.cleaned_data.get('price')
         if price <= 0:
             raise forms.ValidationError("Price must be greater than zero.")
         return price
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = ['name', 'description', 'price', 'image']
+
+class BookingApprovalForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['approved']
