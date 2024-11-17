@@ -3,7 +3,13 @@ from django.contrib import messages
 from .models import Room, Booking
 from .forms import AddRoomForm, BookingApprovalForm, RoomForm  # Import the AddRoomForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
+@staff_member_required
+def admin_home(request):
+    rooms = Room.objects.all()
+    bookings = Booking.objects.all()
+    return render(request, 'hotel_booking/admin_home.html', {'rooms': rooms, 'bookings': bookings})
 def index(request):
     rooms = Room.objects.all()  # Fetch all rooms from the database
     return render(request, 'hotel_booking/index.html', {'rooms': rooms})

@@ -1,4 +1,8 @@
 <!-- hotel_booking/templates/admin/base_site.html -->
+{% if user.is_staff %}
+<a href="{% url 'admin_home' %}">Admin Dashboard</a>
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
