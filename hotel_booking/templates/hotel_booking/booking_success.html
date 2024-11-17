@@ -3,13 +3,19 @@
 {% block title %}Booking Success - Hotel Booking{% endblock %}
 
 {% block content %}
+<div class="container my-5">
     <div class="text-center">
-        <h2>Booking Successful!</h2>
-        <p>Thank you for booking with us, {{ booking.name }}.</p> <!-- Changed from booking.name to booking.customer -->
-        <p>You have successfully booked the room: <strong>{{ booking.room.name }}</strong>.</p>
-        <p><strong>Stay Duration:</strong> {{ booking.duration }} nights</p>
-        <p><strong>Total Cost:</strong> Kshs. {{ booking.total_cost }}</p>
+        <div class="alert alert-success py-4">
+            <h2 class="text-success fw-bold">Booking Successful!</h2>
+            <p class="mt-3">Thank you for booking with us, <strong>{{ booking.customer }}</strong>.</p>
+            <p class="mt-2">You have successfully booked the room: 
+                <span class="text-primary fw-bold">{{ booking.room.name }}</span>.
+            </p>
+            <p><strong>Stay Duration:</strong> {{ booking.duration }} nights</p>
+            <p><strong>Total Cost:</strong> <span class="text-success">Kshs. {{ booking.total_cost }}</span></p>
+        </div>
 
-        <a href="{% url 'index' %}" class="btn btn-primary">Return to Homepage</a>
+        <a href="{% url 'index' %}" class="btn btn-outline-primary btn-lg mt-4">Return to Homepage</a>
     </div>
+</div>
 {% endblock %}
