@@ -33,12 +33,14 @@
                                 <td>{{ room.description }}</td>
                                 <td>Kshs. {{ room.price_per_night }}</td>
                                 <td>
-                                    <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square me-2"></i>Edit
-                                    </a>
-                                    <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">
-                                        <i class="bi bi-trash me-2"></i>Delete
-                                    </a>
+                                    <div class="btn-group" role="group">
+                                        <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">
+                                            <i class="bi bi-pencil-square me-2"></i>Edit
+                                        </a>
+                                        <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">
+                                            <i class="bi bi-trash me-2"></i>Delete
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
