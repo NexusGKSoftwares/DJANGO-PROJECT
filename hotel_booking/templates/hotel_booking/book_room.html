@@ -4,43 +4,97 @@
 
 {% block content %}
 <div class="container my-5">
+    <!-- Title Section -->
     <h2 class="text-center mb-5 text-primary">Book Your Room</h2>
 
+    <!-- Room Booking Card -->
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
-            <div class="card shadow-lg">
-                <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}" 
+            <div class="card shadow-lg rounded-lg">
+                <img src="{{ room.image.url }}" class="card-img-top rounded-top" alt="{{ room.name }}" 
                     onerror="this.src='https://via.placeholder.com/600x400';">
                 <div class="card-body">
-                    <h5 class="card-title text-center text-uppercase">{{ room.name }}</h5>
+                    <h5 class="card-title text-center text-uppercase text-primary mb-3">{{ room.name }}</h5>
                     <p class="card-text text-muted">{{ room.description }}</p>
                     <p class="text-center fw-bold">
                         <span class="text-secondary">Price per Night:</span> 
                         <span class="text-success">Kshs. {{ room.price }}</span>
                     </p>
 
+                    <!-- Booking Form -->
                     <form method="post" class="mt-4">
                         {% csrf_token %}
+                        <!-- Full Name Field -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="name" name="name" 
                                 placeholder="Enter your full name" required>
                         </div>
+                        
+                        <!-- Email Field -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" 
                                 placeholder="Enter your email address" required>
                         </div>
+                        
+                        <!-- Duration Field -->
                         <div class="mb-3">
                             <label for="duration" class="form-label">Duration (in nights)</label>
                             <input type="number" class="form-control" id="duration" name="duration" 
                                 placeholder="Enter number of nights" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100 py-2">Confirm Booking</button>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm hover-zoom">
+                            Confirm Booking
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    /* Hover effect for the submit button */
+    .hover-zoom:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    /* Card shadow */
+    .card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive images */
+    .card-img-top {
+        object-fit: cover;
+        height: 300px;
+    }
+
+    /* Title style */
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    /* Form input style */
+    .form-label {
+        font-weight: bold;
+        color: #495057;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
+
 {% endblock %}
