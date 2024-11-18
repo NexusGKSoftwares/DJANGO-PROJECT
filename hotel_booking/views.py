@@ -10,7 +10,7 @@ def admin_home(request):
     rooms = Room.objects.all()
     bookings = Booking.objects.all()
     return render(request, 'hotel_booking/admin_home.html', {'rooms': rooms, 'bookings': bookings})
-def index(request):
+def index(request):#This is the index view
     rooms = Room.objects.all()  # Fetch all rooms from the database
     return render(request, 'hotel_booking/index.html', {'rooms': rooms})
 def add_room(request):
@@ -26,7 +26,7 @@ def add_room(request):
     else:
         form = AddRoomForm()  # Empty form for GET request
 
-    return render(request, 'hotel_booking/add_room.html', {'form': form})
+    return render(request, 'hotel_booking/add_room.html', {'form': form})#effectively passes data from views to the templates
 
 def available_rooms(request):
     rooms = Room.objects.all()  # Fetch all available rooms
