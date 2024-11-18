@@ -18,7 +18,9 @@
                     <p class="card-text text-muted">{{ room.description }}</p>
                     <p class="text-center fw-bold">
                         <span class="text-secondary">Price per Night:</span> 
-                        <span class="text-success">Kshs. {{ room.price }}</span>
+                        <span class="text-success">
+                            <i class="fas fa-money-bill-wave me-2"></i> Kshs. {{ room.price }}
+                        </span>
                     </p>
 
                     <!-- Booking Form -->
@@ -26,28 +28,34 @@
                         {% csrf_token %}
                         <!-- Full Name Field -->
                         <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
+                            <label for="name" class="form-label">
+                                <i class="fas fa-user me-2"></i> Full Name
+                            </label>
                             <input type="text" class="form-control" id="name" name="name" 
                                 placeholder="Enter your full name" required>
                         </div>
                         
                         <!-- Email Field -->
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope me-2"></i> Email
+                            </label>
                             <input type="email" class="form-control" id="email" name="email" 
                                 placeholder="Enter your email address" required>
                         </div>
                         
                         <!-- Duration Field -->
                         <div class="mb-3">
-                            <label for="duration" class="form-label">Duration (in nights)</label>
+                            <label for="duration" class="form-label">
+                                <i class="fas fa-calendar-day me-2"></i> Duration (in nights)
+                            </label>
                             <input type="number" class="form-control" id="duration" name="duration" 
                                 placeholder="Enter number of nights" required>
                         </div>
 
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm hover-zoom">
-                            Confirm Booking
+                            <i class="fas fa-check-circle me-2"></i> Confirm Booking
                         </button>
                     </form>
                 </div>
@@ -56,6 +64,7 @@
     </div>
 </div>
 
+<!-- Custom Styles -->
 <style>
     /* Hover effect for the submit button */
     .hover-zoom:hover {
@@ -94,6 +103,11 @@
     .btn-primary:hover {
         background-color: #0056b3;
         border-color: #004085;
+    }
+
+    /* Icon Spacing */
+    .me-2 {
+        margin-right: 0.5rem;
     }
 </style>
 
