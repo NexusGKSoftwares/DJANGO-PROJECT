@@ -3,11 +3,85 @@
 {% block title %}Home - Hotel Booking{% endblock %}
 
 {% block content %}
-<div class="jumbotron text-center bg-light py-5 mb-5 shadow-lg">
-    <h1 class="display-4 fw-bold text-primary">Welcome to Our Hotel</h1>
-    <p class="lead text-muted">Your home away from home, where comfort meets elegance.</p>
-    <a class="btn btn-primary btn-lg px-4 py-2 mt-3 shadow" href="{% url 'available_rooms' %}" role="button">Book a Room</a>
+<!-- Banner Section -->
+<div class="jumbotron text-center text-white py-5 mb-5 shadow-lg rounded-3" style="background-image: url('https://cdn.pixabay.com/photo/2016/06/10/01/05/hotel-room-1447201_640.jpg'); background-size: cover; background-position: center;">
+    <div class="container">
+        <!-- Main Heading -->
+        <h1 class="display-4 fw-bold text-uppercase animate__animated animate__fadeIn animate__delay-1s">
+            Welcome to Our Hotel
+        </h1>
+        <!-- Subheading -->
+        <p class="lead text-muted animate__animated animate__fadeIn animate__delay-2s" style="font-size: 1.2rem;">
+            Your home away from home, where comfort meets elegance.
+        </p>
+        <!-- Action Button -->
+        <a class="btn btn-light btn-lg px-4 py-2 mt-4 shadow animate__animated animate__fadeIn animate__delay-3s" href="{% url 'available_rooms' %}" role="button">
+            Book a Room
+        </a>
+    </div>
 </div>
+
+<!-- Additional CSS Styling for Banner Section -->
+<style>
+    /* Banner Background */
+    .jumbotron {
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Banner Title */
+    .jumbotron h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* Banner Subheading */
+    .jumbotron p {
+        font-size: 1.2rem;
+        color: #f1f1f1;
+    }
+
+    /* Button */
+    .jumbotron .btn {
+        background-color: #ffffff;
+        color: #007bff;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .jumbotron .btn:hover {
+        background-color: #0056b3;
+        color: #fff;
+        transform: translateY(-3px);
+    }
+
+    /* Animation Styling */
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    /* Box-shadow for Banner */
+    .shadow-lg {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Responsiveness */
+    @media (max-width: 767px) {
+        .jumbotron h1 {
+            font-size: 2rem;
+        }
+        .jumbotron p {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<!-- Add CSS Animation Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 <div class="container mt-5">
     <h2 class="text-center mb-4 fw-bold text-secondary">Our Featured Rooms</h2>
@@ -25,6 +99,292 @@
             </div>
         </div>
         {% endfor %}
+        <!-- About Us Section -->
+<section id="about" class="py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="col-12 text-center mb-4">
+                <h2 class="display-4" style="font-weight: bold; color: #007bff;">About Us</h2>
+                <p class="lead" style="font-size: 18px; color: #6c757d;">Learn more about our hotel and the services we offer.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <!-- Image Section -->
+            <div class="col-md-6 mb-4">
+                <img src="https://cdn.pixabay.com/photo/2016/03/28/09/34/bedroom-1285156_640.jpg" alt="Hotel Image" class="img-fluid rounded shadow">
+            </div>
+
+            <!-- Text Section -->
+            <div class="col-md-6">
+                <h3 class="h4" style="font-weight: bold; color: #007bff;">Our Mission</h3>
+                <p style="font-size: 16px; color: #495057;">
+                    At Hotel Booking, we strive to provide an exceptional experience for our guests. Whether you’re traveling for business or leisure, we offer comfortable and luxurious rooms, top-notch services, and a memorable stay.
+                </p>
+
+                <h3 class="h4" style="font-weight: bold; color: #007bff;">Our Services</h3>
+                <ul style="font-size: 16px; color: #495057;">
+                    <li>Wide range of room options tailored to your needs</li>
+                    <li>24/7 customer support and concierge services</li>
+                    <li>Easy online booking with secure payment options</li>
+                    <li>Premium amenities including free Wi-Fi and breakfast</li>
+                    <li>Event spaces and conference facilities for business meetings</li>
+                </ul>
+
+                <h3 class="h4" style="font-weight: bold; color: #007bff;">Why Choose Us?</h3>
+                <p style="font-size: 16px; color: #495057;">
+                    With a commitment to excellence and customer satisfaction, we ensure that every guest has a comfortable and memorable stay. Our prime location, along with world-class amenities, makes us a top choice for travelers worldwide.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional CSS Styling -->
+<style>
+    #about {
+        background-color: #f8f9fa;
+    }
+
+    #about .container {
+        max-width: 1200px;
+    }
+
+    #about .row {
+        margin-top: 20px;
+    }
+
+    #about .img-fluid {
+        border-radius: 10px;
+    }
+
+    #about h2 {
+        color: #007bff;
+    }
+
+    #about ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    #about ul li::before {
+        content: "• ";
+        color: #007bff;
+    }
+
+    #about h3 {
+        margin-top: 15px;
+    }
+</style>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-5" style="background-color: #f1f3f5;">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="col-12 text-center mb-4">
+                <h2 class="display-4" style="font-weight: bold; color: #007bff;">What Our Guests Say</h2>
+                <p class="lead" style="font-size: 18px; color: #6c757d;">Don't just take our word for it, hear from our happy customers!</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Testimonial 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <div class="card-body text-center">
+                        <img src="https://cdn.pixabay.com/photo/2018/01/03/19/54/fashion-3059143_640.jpg" alt="John Doe" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                        <p class="card-text" style="font-size: 16px; color: #495057;">
+                            "The stay was absolutely amazing! The rooms were clean, the service was top-notch, and I loved the facilities. Highly recommend!"
+                        </p>
+                        <div class="stars mb-2">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <h5 class="card-title" style="font-weight: bold; color: #007bff;">John Doe</h5>
+                        <p class="card-subtitle text-muted">Business Traveler</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <div class="card-body text-center">
+                        <img src="https://cdn.pixabay.com/photo/2018/01/03/19/54/fashion-3059143_640.jpg" alt="Jane Smith" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                        <p class="card-text" style="font-size: 16px; color: #495057;">
+                            "An unforgettable experience! The staff went above and beyond to make our stay pleasant. Would definitely visit again!"
+                        </p>
+                        <div class="stars mb-2">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <h5 class="card-title" style="font-weight: bold; color: #007bff;">Jane Smith</h5>
+                        <p class="card-subtitle text-muted">Family Vacation</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded">
+                    <div class="card-body text-center">
+                        <img src="https://cdn.pixabay.com/photo/2018/01/03/19/54/fashion-3059143_640.jpg" alt="Michael Green" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                        <p class="card-text" style="font-size: 16px; color: #495057;">
+                            "Perfect for a weekend getaway! Excellent location, fantastic food, and exceptional customer service. Highly recommend."
+                        </p>
+                        <div class="stars mb-2">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star-half-o"></span>
+                        </div>
+                        <h5 class="card-title" style="font-weight: bold; color: #007bff;">Michael Green</h5>
+                        <p class="card-subtitle text-muted">Weekend Traveler</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional CSS Styling -->
+<style>
+    #testimonials .card {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
+    }
+
+    #testimonials .card-body {
+        padding: 30px;
+    }
+
+    #testimonials h5 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #testimonials p {
+        font-size: 16px;
+        color: #495057;
+    }
+
+    #testimonials .card-subtitle {
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+    /* Styling for stars */
+    .stars .fa {
+        color: #ffc107;
+    }
+
+    .stars .fa.checked {
+        color: #ffc107;
+    }
+
+    .stars .fa-half-o {
+        color: #ffc107;
+    }
+</style>
+<!-- Teams Section -->
+<section id="teams" class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="col-12 text-center mb-4">
+                <h2 class="display-4" style="font-weight: bold; color: #007bff;">Meet Our Team</h2>
+                <p class="lead" style="font-size: 18px; color: #6c757d;">The dedicated team making your stay extraordinary.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Team Member 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded text-center">
+                    <img src="https://cdn.pixabay.com/photo/2021/12/16/17/25/man-6874912_640.jpg" alt="Team Member 1" class="card-img-top rounded-circle" style="width: 200px; height: 200px; object-fit: cover; margin: 20px auto;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold; color: #007bff;">Alice Johnson</h5>
+                        <p class="card-subtitle text-muted">Hotel Manager</p>
+                        <p class="card-text" style="font-size: 16px; color: #495057;">
+                            Alice has over 10 years of experience in the hospitality industry and ensures that every guest has a memorable stay.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded text-center">
+                    <img src="https://cdn.pixabay.com/photo/2021/12/16/17/25/man-6874912_640.jpg" alt="Team Member 2" class="card-img-top rounded-circle" style="width: 200px; height: 200px; object-fit: cover; margin: 20px auto;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold; color: #007bff;">John Smith</h5>
+                        <p class="card-subtitle text-muted">Head Chef</p>
+                        <p class="card-text" style="font-size: 16px; color: #495057;">
+                            John creates culinary delights that leave guests wanting more. His passion for cooking brings out the best in local ingredients.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow border-0 rounded text-center">
+                    <img src="https://cdn.pixabay.com/photo/2021/12/16/17/25/man-6874912_640.jpg" alt="Team Member 3" class="card-img-top rounded-circle" style="width: 200px; height: 200px; object-fit: cover; margin: 20px auto;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold; color: #007bff;">Emily Davis</h5>
+                        <p class="card-subtitle text-muted">Guest Relations Manager</p>
+                        <p class="card-text" style="font-size: 16px; color: #495057;">
+                            Emily is dedicated to ensuring that every guest’s needs are met, providing personalized service and a warm welcome.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional CSS Styling -->
+<style>
+    #teams .card {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 10px;
+    }
+
+    #teams .card-body {
+        padding: 30px;
+    }
+
+    #teams .card-img-top {
+        margin-bottom: 20px;
+    }
+
+    #teams h5 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #teams p {
+        font-size: 16px;
+        color: #495057;
+    }
+
+    #teams .card-subtitle {
+        font-size: 14px;
+        color: #6c757d;
+    }
+</style>
+
     </div>
 </div>
 {% endblock %}
