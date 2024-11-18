@@ -8,8 +8,12 @@
 
         <!-- Rooms Section -->
         <div class="mt-4">
-            <h2>Rooms</h2>
-            <a href="{% url 'add_room' %}" class="btn btn-success">Add New Room</a>
+            <h2 class="d-flex justify-content-between align-items-center">
+                <span>Rooms</span>
+                <a href="{% url 'add_room' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle me-2"></i>Add New Room
+                </a>
+            </h2>
             <div class="row mt-4">
                 {% for room in rooms %}
                     <div class="col-md-4">
@@ -19,8 +23,14 @@
                                 <h5 class="card-title">{{ room.name }}</h5>
                                 <p class="card-text">{{ room.description }}</p>
                                 <p><strong>Price per night:</strong> Kshs. {{ room.price_per_night }}</p>
-                                <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">Edit</a>
-                                <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">Delete</a>
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">
+                                        <i class="bi bi-pencil-square me-2"></i>Edit
+                                    </a>
+                                    <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">
+                                        <i class="bi bi-trash me-2"></i>Delete
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -30,7 +40,9 @@
 
         <!-- Bookings Section -->
         <div class="mt-4">
-            <h2>Bookings</h2>
+            <h2 class="d-flex justify-content-between align-items-center">
+                <span>Bookings</span>
+            </h2>
             <div class="row mt-4">
                 {% for booking in bookings %}
                     <div class="col-md-4">
@@ -44,6 +56,7 @@
                                 <form method="POST" action="{% url 'approve_booking' booking.id %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-success" {% if booking.approved %}disabled{% endif %}>
+                                        <i class="bi bi-check-circle me-2"></i>
                                         {% if booking.approved %}Approved{% else %}Approve{% endif %}
                                     </button>
                                 </form>

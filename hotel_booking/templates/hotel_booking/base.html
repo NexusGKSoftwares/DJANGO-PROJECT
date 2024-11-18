@@ -5,34 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Hotel Booking{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-top: 70px; /* Ensure space for the sticky navbar */
+            padding-top: 70px;
+            background-color: #f8f9fa; /* Light background for readability */
         }
         .navbar {
-            background-color: #f8f9fa; /* Light gray */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .navbar-brand {
             font-weight: bold;
-            color: #007bff; /* Primary color */
+            color: #0d6efd;
         }
         .navbar-brand:hover {
-            color: #0056b3;
+            color: #0a58ca;
+        }
+        .nav-link {
+            color: #6c757d;
+        }
+        .nav-link:hover {
+            color: #0d6efd;
         }
         footer {
-            background-color: #f8f9fa; /* Light gray */
-            border-top: 1px solid #eaeaea;
+            background-color: #212529;
+            color: #adb5bd;
+            padding: 20px 0;
         }
         footer p, footer a {
+            color: #adb5bd;
             margin: 0;
-            color: #6c757d; /* Muted text */
         }
         footer a:hover {
+            color: #ffffff;
             text-decoration: none;
-            color: #007bff; /* Primary color */
+        }
+        footer .social-icons a {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            color: #adb5bd;
+        }
+        footer .social-icons a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
@@ -59,34 +76,37 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container">
+    <main class="container my-4">
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="text-center py-4">
-        <div class="container">
+    <footer>
+        <div class="container text-center">
             <p>&copy; 2024 Hotel Booking System | All rights reserved.</p>
             <div>
                 <a href="#" class="me-3">Privacy Policy</a>
                 <a href="#" class="me-3">Terms of Service</a>
                 <a href="#">Contact Us</a>
             </div>
-            <div class="mt-3">
-                <a href="#" class="text-muted me-3">
-                    <i class="bi bi-facebook"></i> Facebook
+            <div class="social-icons mt-3">
+                <a href="#" aria-label="Facebook">
+                    <i class="bi bi-facebook"></i>
                 </a>
-                <a href="#" class="text-muted me-3">
-                    <i class="bi bi-twitter"></i> Twitter
+                <a href="#" aria-label="Twitter">
+                    <i class="bi bi-twitter"></i>
                 </a>
-                <a href="#" class="text-muted">
-                    <i class="bi bi-instagram"></i> Instagram
+                <a href="#" aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <i class="bi bi-linkedin"></i>
                 </a>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGFwCynGErYmnfAG6rrc2eFzIaepyoPklEj7LgYmKizt" crossorigin="anonymous"></script>
 </body>
 </html>
