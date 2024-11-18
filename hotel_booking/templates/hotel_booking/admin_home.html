@@ -53,28 +53,43 @@
             <h2 class="d-flex justify-content-between align-items-center">
                 <span>Bookings</span>
             </h2>
-            <div class="row mt-4">
-                {% for booking in bookings %}
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Booking for {{ booking.room.name }}</h5>
-                                <p><strong>User:</strong> {{ booking.user.username }}</p>
-                                <p><strong>Check-in:</strong> {{ booking.check_in }}</p>
-                                <p><strong>Check-out:</strong> {{ booking.check_out }}</p>
-                                <p><strong>Total Cost:</strong> Kshs. {{ booking.total_cost }}</p>
-                                <form method="POST" action="{% url 'approve_booking' booking.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success" {% if booking.approved %}disabled{% endif %}>
-                                        <i class="bi bi-check-circle me-2"></i>
-                                        {% if booking.approved %}Approved{% else %}Approve{% endif %}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Room Name</th>
+                            <th>User</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Total Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ booking.room.name }}</td>
+                                <td>{{ booking.user.username }}</td>
+                                <td>{{ booking.check_in }}</td>
+                                <td>{{ booking.check_out }}</td>
+                                <td>Kshs. {{ booking.total_cost }}</td>
+                                <td>
+                                    <form method="POST" action="{% url 'approve_booking' booking.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-success" {% if booking.approved %}disabled{% endif %}>
+                                            <i class="bi bi-check-circle me-2"></i>
+                                            {% if booking.approved %}Approved{% else %}Approve{% endif %}
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
+        
     </div>
 {% endblock %}
