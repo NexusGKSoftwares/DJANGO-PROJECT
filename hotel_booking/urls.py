@@ -12,7 +12,7 @@ urlpatterns = [
     path('add-room/', views.add_room, name='add_room'),
     path('room/<int:room_id>/', views.room_details, name='room_details'),
     path('admin_home/', views.admin_home, name='admin_home'),
-    path('manage_rooms', views.manage_rooms, name='manage_rooms'),
+    path('manage_rooms/', views.manage_rooms, name='manage_rooms'),
     path('edit_room/<int:id>/', views.edit_room, name='edit_room'),
     path('delete_room/<int:id>/', views.delete_room, name='delete_room'),  # Add this line for delete_room
     path('add/', views.add_room, name='add_room'),
@@ -21,3 +21,4 @@ urlpatterns = [
     path('bookings/approve/<int:booking_id>/', views.approve_booking, name='approve_booking'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

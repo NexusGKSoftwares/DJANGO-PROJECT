@@ -19,7 +19,7 @@ def add_room(request):
         if form.is_valid():
             form.save()  # Automatically saves the room data, including the image
             messages.success(request, 'Room added successfully!')
-            return redirect('available_rooms')  # Redirect to the available rooms page after successful submission
+            return redirect('admin_home')  # Redirect to the available rooms page after successful submission
         else:
             # If the form is invalid, render the form with error messages
             messages.error(request, 'Please correct the errors below.')

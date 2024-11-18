@@ -1,37 +1,156 @@
-<!-- hotel_booking/templates/hotel_booking/book_room.html -->
 {% extends 'hotel_booking/base.html' %}
 
 {% block title %}Book Room - Hotel Booking{% endblock %}
 
 {% block content %}
-    <h2 class="text-center mb-4">Book Your Room</h2>
+<div class="container my-5">
+    <!-- Title Section -->
+    <h2 class="text-center mb-5 text-primary">Book Your Room</h2>
 
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
+    <!-- Room Booking Card -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg rounded-lg">
+                <img src="{{ room.image.url }}" class="card-img-top rounded-top" alt="{{ room.name }}" 
+                    onerror="this.src='https://via.placeholder.com/600x400';">
                 <div class="card-body">
-                    <h5 class="card-title">{{ room.name }}</h5>
-                    <p class="card-text">{{ room.description }}</p>
-                    <p><strong>Price per Night:</strong> Kshs. {{ room.price }}</p>
+                    <h5 class="card-title text-center text-uppercase text-primary mb-3">{{ room.name }}</h5>
+                    <p class="card-text text-muted">{{ room.description }}</p>
+                    <p class="text-center fw-bold">
+                        <span class="text-secondary">Price per Night:</span> 
+                        <span class="text-success">
+                            <i class="fas fa-money-bill-wave me-2"></i> Kshs. {{ room.price }}
+                        </span>
+                    </p>
 
-                    <form method="post">
+                    <!-- Booking Form -->
+                    <form method="post" class="mt-4">
                         {% csrf_token %}
+                        <!-- Full Name Field -->
                         <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <label for="name" class="form-label">
+                                <i class="fas fa-user me-2"></i> Full Name
+                            </label>
+                            <input type="text" class="form-control" id="name" name="name" 
+                                placeholder="Enter your full name" required>
                         </div>
+                        
+                        <!-- Email Field -->
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope me-2"></i> Email
+                            </label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                placeholder="Enter your email address" required>
                         </div>
+                        
+                        <!-- Check-In Date Field -->
                         <div class="mb-3">
-                            <label for="duration" class="form-label">Duration (in nights)</label>
-                            <input type="number" class="form-control" id="duration" name="duration" required>
+                            <label for="check_in" class="form-label">
+                                <i class="fas fa-calendar-alt me-2"></i> Check-In Date
+                            </label>
+                            <input type="date" class="form-control" id="check_in" name="check_in" required onchange="calculateDuration()">
                         </div>
-                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+
+                        <!-- Check-Out Date Field -->
+                        <div class="mb-3">
+                            <label for="check_out" class="form-label">
+                                <i class="fas fa-calendar-alt me-2"></i> Check-Out Date
+                            </label>
+                            <input type="date" class="form-control" id="check_out" name="check_out" required onchange="calculateDuration()">
+                        </div>
+
+                        <!-- Duration Field (This will be automatically calculated) -->
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">
+                                <i class="fas fa-calendar-day me-2"></i> Duration (in nights)
+                            </label>
+                            <input type="number" class="form-control" id="duration" name="duration" 
+                                placeholder="Enter number of nights" readonly>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm hover-zoom">
+                            <i class="fas fa-check-circle me-2"></i> Confirm Booking
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    /* Hover effect for the submit button */
+    .hover-zoom:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    /* Card shadow */
+    .card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive images */
+    .card-img-top {
+        object-fit: cover;
+        height: 300px;
+    }
+
+    /* Title style */
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    /* Form input style */
+    .form-label {
+        font-weight: bold;
+        color: #495057;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    /* Icon Spacing */
+    .me-2 {
+        margin-right: 0.5rem;
+    }
+</style>
+
+<!-- JavaScript for Duration Calculation -->
+<script>
+    function calculateDuration() {
+        const checkIn = document.getElementById('check_in').value;
+        const checkOut = document.getElementById('check_out').value;
+
+        // Ensure both dates are selected before calculating
+        if (checkIn && checkOut) {
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+
+            // Calculate duration (difference in days)
+            const timeDifference = checkOutDate - checkInDate;
+            const duration = timeDifference / (1000 * 3600 * 24); // Convert ms to days
+
+            // Ensure the duration is a positive value
+            if (duration > 0) {
+                document.getElementById('duration').value = duration;
+            } else {
+                alert('Check-Out date must be later than Check-In date.');
+                document.getElementById('duration').value = '';
+            }
+        }
+    }
+</script>
+
 {% endblock %}

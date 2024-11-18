@@ -4,54 +4,92 @@
 
 {% block content %}
     <div class="container mt-5">
-        <h1 class="text-center">Admin Dashboard</h1>
-
+ 
         <!-- Rooms Section -->
         <div class="mt-4">
-            <h2>Rooms</h2>
-            <a href="{% url 'add_room' %}" class="btn btn-success">Add New Room</a>
-            <div class="row mt-4">
-                {% for room in rooms %}
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ room.name }}</h5>
-                                <p class="card-text">{{ room.description }}</p>
-                                <p><strong>Price per night:</strong> Kshs. {{ room.price_per_night }}</p>
-                                <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">Edit</a>
-                                <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+            <h2 class="d-flex justify-content-between align-items-center">
+                <span>Rooms</span>
+                <a href="{% url 'add_room' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle me-2"></i>Add New Room
+                </a>
+            </h2>
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Room Name</th>
+                            <th>Description</th>
+                            <th>Price per Night</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for room in rooms %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ room.name }}</td>
+                                <td>{{ room.description }}</td>
+                                <td>Kshs. {{ room.price_per_night }}</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">
+                                            <i class="bi bi-pencil-square me-2"></i>Edit
+                                        </a>
+                                        <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">
+                                            <i class="bi bi-trash me-2"></i>Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <!-- Bookings Section -->
         <div class="mt-4">
-            <h2>Bookings</h2>
-            <div class="row mt-4">
-                {% for booking in bookings %}
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Booking for {{ booking.room.name }}</h5>
-                                <p><strong>User:</strong> {{ booking.user.username }}</p>
-                                <p><strong>Check-in:</strong> {{ booking.check_in }}</p>
-                                <p><strong>Check-out:</strong> {{ booking.check_out }}</p>
-                                <p><strong>Total Cost:</strong> Kshs. {{ booking.total_cost }}</p>
-                                <form method="POST" action="{% url 'approve_booking' booking.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success" {% if booking.approved %}disabled{% endif %}>
-                                        {% if booking.approved %}Approved{% else %}Approve{% endif %}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+            <h2 class="d-flex justify-content-between align-items-center">
+                <span>Bookings</span>
+            </h2>
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Room Name</th>
+                            <th>User</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Total Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ booking.room.name }}</td>
+                                <td>{{ booking.user.username }}</td>
+                                <td>{{ booking.check_in }}</td>
+                                <td>{{ booking.check_out }}</td>
+                                <td>Kshs. {{ booking.total_cost }}</td>
+                                <td>
+                                    <form method="POST" action="{% url 'approve_booking' booking.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-success" {% if booking.approved %}disabled{% endif %}>
+                                            <i class="bi bi-check-circle me-2"></i>
+                                            {% if booking.approved %}Approved{% else %}Approve{% endif %}
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
+        
     </div>
 {% endblock %}

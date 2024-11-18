@@ -18,6 +18,6 @@ class Booking(models.Model):
     duration = models.PositiveIntegerField()  # Duration in nights
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
     approved = models.BooleanField(default=False)  # Make sure this field exists!
-    
+
     def __str__(self):
         return f"Booking by {self.customer} for {self.room.name}"

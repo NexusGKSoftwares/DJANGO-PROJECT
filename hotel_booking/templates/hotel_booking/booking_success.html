@@ -3,13 +3,92 @@
 {% block title %}Booking Success - Hotel Booking{% endblock %}
 
 {% block content %}
+<div class="container my-5">
     <div class="text-center">
-        <h2>Booking Successful!</h2>
-        <p>Thank you for booking with us, {{ booking.name }}.</p> <!-- Changed from booking.name to booking.customer -->
-        <p>You have successfully booked the room: <strong>{{ booking.room.name }}</strong>.</p>
-        <p><strong>Stay Duration:</strong> {{ booking.duration }} nights</p>
-        <p><strong>Total Cost:</strong> Kshs. {{ booking.total_cost }}</p>
+        <!-- Success Message with Emojis -->
+        <div class="alert alert-success py-4 rounded-lg">
+            <h2 class="text-success fw-bold">
+                <span role="img" aria-label="success">🎉</span> Booking Successful! 
+                <span role="img" aria-label="thumbs-up">👍</span>
+            </h2>
+            <p class="mt-3">Thank you for booking with us, <strong>{{ booking.customer }}</strong>.</p>
+            <p class="mt-2">You have successfully booked the room: 
+                <span class="text-primary fw-bold">{{ booking.room.name }}</span>.
+            </p>
+            <p><strong>Stay Duration:</strong> {{ booking.duration }} nights</p>
+            <p><strong>Total Cost:</strong> <span class="text-success">Kshs. {{ booking.total_cost }}</span></p>
+        </div>
 
-        <a href="{% url 'index' %}" class="btn btn-primary">Return to Homepage</a>
+        <!-- Email Confirmation Section -->
+        <div class="alert alert-info py-4 rounded-lg">
+            <h4 class="text-info">Please confirm your email to proceed to checkout</h4>
+            <p>A confirmation email has been sent to <strong>{{ booking.email }}</strong>. 
+               Kindly check your inbox and click the link to confirm your booking and proceed with the payment.
+            </p>
+            <p>If you don't see the email, please check your spam folder.</p>
+        </div>
+
+        <!-- Return to Homepage Button -->
+        <a href="{% url 'index' %}" class="btn btn-outline-primary btn-lg mt-4 shadow-sm hover-zoom">
+            <i class="fas fa-home me-2"></i> Return to Homepage
+        </a>
     </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    /* Alert Success Styling */
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+    }
+
+    /* Alert Info Styling */
+    .alert-info {
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+        color: #0c5460;
+    }
+
+    /* Button Hover Effect */
+    .hover-zoom:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    /* Button Styling */
+    .btn-outline-primary {
+        border-color: #007bff;
+        color: #007bff;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    /* Responsive Text */
+    .text-success {
+        color: #28a745 !important;
+    }
+
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    .fw-bold {
+        font-weight: bold;
+    }
+
+    .text-info {
+        color: #17a2b8 !important;
+    }
+
+    /* Icon Spacing */
+    .me-2 {
+        margin-right: 0.5rem;
+    }
+</style>
+
 {% endblock %}
