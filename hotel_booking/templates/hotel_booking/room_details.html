@@ -5,26 +5,48 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row">
+        <!-- Room Image Section -->
         <div class="col-md-6">
-            <img src="{{ room.image.url }}" class="img-fluid rounded" alt="{{ room.name }}" onerror="this.src='https://via.placeholder.com/600';">
+            <img src="{{ room.image.url }}" class="img-fluid rounded shadow-lg" alt="{{ room.name }}" onerror="this.src='https://via.placeholder.com/600';">
         </div>
+
+        <!-- Room Details Section -->
         <div class="col-md-6">
-            <h2 class="mb-3">{{ room.name }}</h2>
-            <p>{{ room.description }}</p>
+            <h2 class="display-4 text-primary mb-4">{{ room.name }}</h2>
+            <p class="lead text-muted">{{ room.description }}</p>
             <p><strong>Price:</strong> Kshs. {{ room.price }} per night</p>
-            <a href="{% url 'book_room' room.id %}" class="btn btn-primary btn-lg mt-3">Book Now</a>
+            <a href="{% url 'book_room' room.id %}" class="btn btn-lg btn-success shadow-sm mt-4 rounded-pill px-4 py-2">
+                <i class="bi bi-check-circle me-2"></i> Book Now
+            </a>
         </div>
     </div>
 
+    <!-- Amenities Section -->
     <div class="mt-5">
-        <h3>Room Amenities</h3>
-        <ul>
-            <li>Free Wi-Fi</li>
-            <li>Air Conditioning</li>
-            <li>Flat-screen TV</li>
-            <li>Room Service</li>
-            <li>Private Bathroom</li>
+        <h3 class="text-primary mb-3">Room Amenities</h3>
+        <ul class="list-unstyled d-flex flex-wrap">
+            <li class="d-flex align-items-center me-4 mb-3">
+                <i class="bi bi-wifi me-2 fs-4 text-success"></i> Free Wi-Fi
+            </li>
+            <li class="d-flex align-items-center me-4 mb-3">
+                <i class="bi bi-snow me-2 fs-4 text-info"></i> Air Conditioning
+            </li>
+            <li class="d-flex align-items-center me-4 mb-3">
+                <i class="bi bi-tv me-2 fs-4 text-warning"></i> Flat-screen TV
+            </li>
+            <li class="d-flex align-items-center me-4 mb-3">
+                <i class="bi bi-cart me-2 fs-4 text-danger"></i> Room Service
+            </li>
+            <li class="d-flex align-items-center me-4 mb-3">
+                <i class="bi bi-bath me-2 fs-4 text-primary"></i> Private Bathroom
+            </li>
         </ul>
     </div>
 </div>
+
+<!-- Optional Footer Section (if needed) -->
+<div class="text-center mt-5 mb-4">
+    <p class="text-muted">&copy; {{ current_year }} Hotel Booking. All rights reserved.</p>
+</div>
+
 {% endblock %}
