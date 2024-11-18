@@ -14,27 +14,36 @@
                     <i class="bi bi-plus-circle me-2"></i>Add New Room
                 </a>
             </h2>
-            <div class="row mt-4">
-                {% for room in rooms %}
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ room.name }}</h5>
-                                <p class="card-text">{{ room.description }}</p>
-                                <p><strong>Price per night:</strong> Kshs. {{ room.price_per_night }}</p>
-                                <div class="d-flex justify-content-between">
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Room Name</th>
+                            <th>Description</th>
+                            <th>Price per Night</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for room in rooms %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ room.name }}</td>
+                                <td>{{ room.description }}</td>
+                                <td>Kshs. {{ room.price_per_night }}</td>
+                                <td>
                                     <a href="{% url 'edit_room' room.id %}" class="btn btn-primary">
                                         <i class="bi bi-pencil-square me-2"></i>Edit
                                     </a>
                                     <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">
                                         <i class="bi bi-trash me-2"></i>Delete
                                     </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
 
