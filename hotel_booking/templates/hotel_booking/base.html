@@ -81,31 +81,56 @@
         {% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 Hotel Booking System | All rights reserved.</p>
-            <div>
-                <a href="#" class="me-3">Privacy Policy</a>
-                <a href="#" class="me-3">Terms of Service</a>
-                <a href="#">Contact Us</a>
-            </div>
-            <div class="social-icons mt-3">
-                <a href="#" aria-label="Facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="#" aria-label="Instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="#" aria-label="LinkedIn">
-                    <i class="bi bi-linkedin"></i>
-                </a>
-            </div>
+<!-- Footer -->
+<footer style="background-color: #e2eaf1; padding: 40px 0; border-top: 1px solid #ddd;">
+    <div class="container text-center">
+        <!-- Footer Text -->
+        <p style="font-size: 14px; color: #6c757d;">&copy; 2024 Hotel Booking System | All rights reserved.</p>
+        
+        <!-- Links Section -->
+        <div class="footer-links my-3">
+            <a href="#" class="me-3 text-dark" style="text-decoration: none; transition: color 0.3s;">Privacy Policy</a>
+            <a href="#" class="me-3 text-dark" style="text-decoration: none; transition: color 0.3s;">Terms of Service</a>
+            <a href="#" class="text-dark" style="text-decoration: none; transition: color 0.3s;">Contact Us</a>
         </div>
-    </footer>
+
+        <!-- Social Icons Section -->
+        <div class="social-icons mt-3">
+            <a href="#" aria-label="Facebook" class="me-3" style="font-size: 20px; color: #3b5998; transition: color 0.3s;">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" aria-label="Twitter" class="me-3" style="font-size: 20px; color: #1da1f2; transition: color 0.3s;">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="me-3" style="font-size: 20px; color: #e4405f; transition: color 0.3s;">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="me-3" style="font-size: 20px; color: #0077b5; transition: color 0.3s;">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        </div>
+
+        <!-- Newsletter Subscription Form (Optional) -->
+        <div class="newsletter mt-4">
+            <form action="#" method="post" class="d-flex justify-content-center">
+                <input type="email" class="form-control w-50" placeholder="Subscribe to our newsletter" style="border-radius: 25px; border: 1px solid #ddd;">
+                <button type="submit" class="btn btn-primary ms-2" style="border-radius: 25px;">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</footer>
+
+<!-- Add custom styles for hover effects -->
+<style>
+    footer a:hover {
+        color: #007bff !important;
+    }
+
+    footer .social-icons a:hover {
+        transform: scale(1.1);
+    }
+</style>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGFwCynGErYmnfAG6rrc2eFzIaepyoPklEj7LgYmKizt" crossorigin="anonymous"></script>
 </body>
