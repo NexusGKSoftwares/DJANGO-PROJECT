@@ -44,13 +44,29 @@
                                 placeholder="Enter your email address" required>
                         </div>
                         
-                        <!-- Duration Field -->
+                        <!-- Check-In Date Field -->
+                        <div class="mb-3">
+                            <label for="check_in" class="form-label">
+                                <i class="fas fa-calendar-alt me-2"></i> Check-In Date
+                            </label>
+                            <input type="date" class="form-control" id="check_in" name="check_in" required onchange="calculateDuration()">
+                        </div>
+
+                        <!-- Check-Out Date Field -->
+                        <div class="mb-3">
+                            <label for="check_out" class="form-label">
+                                <i class="fas fa-calendar-alt me-2"></i> Check-Out Date
+                            </label>
+                            <input type="date" class="form-control" id="check_out" name="check_out" required onchange="calculateDuration()">
+                        </div>
+
+                        <!-- Duration Field (This will be automatically calculated) -->
                         <div class="mb-3">
                             <label for="duration" class="form-label">
                                 <i class="fas fa-calendar-day me-2"></i> Duration (in nights)
                             </label>
                             <input type="number" class="form-control" id="duration" name="duration" 
-                                placeholder="Enter number of nights" required>
+                                placeholder="Enter number of nights" readonly>
                         </div>
 
                         <!-- Submit Button -->
@@ -110,5 +126,31 @@
         margin-right: 0.5rem;
     }
 </style>
+
+<!-- JavaScript for Duration Calculation -->
+<script>
+    function calculateDuration() {
+        const checkIn = document.getElementById('check_in').value;
+        const checkOut = document.getElementById('check_out').value;
+
+        // Ensure both dates are selected before calculating
+        if (checkIn && checkOut) {
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+
+            // Calculate duration (difference in days)
+            const timeDifference = checkOutDate - checkInDate;
+            const duration = timeDifference / (1000 * 3600 * 24); // Convert ms to days
+
+            // Ensure the duration is a positive value
+            if (duration > 0) {
+                document.getElementById('duration').value = duration;
+            } else {
+                alert('Check-Out date must be later than Check-In date.');
+                document.getElementById('duration').value = '';
+            }
+        }
+    }
+</script>
 
 {% endblock %}
