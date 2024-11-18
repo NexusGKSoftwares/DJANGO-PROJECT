@@ -4,7 +4,7 @@
 {% block title %}Book Room - Hotel Booking{% endblock %}
 
 {% block content %}
-    <h2 class="text-center mb-4">Book Your Room</h2>
+    <h2 class="text-center mb-4"><i class="fa-solid fa-house"></i>Book Your Room</h2>
 
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -17,15 +17,15 @@
                     <form method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
+                            <label for="name" class="form-label"><i class="fa-solid fa-person"></i>&nbsp;Full Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label"><i class="fa-regular fa-envelope"></i>&nbsp; Email</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
-                            <label for="duration" class="form-label">Duration (in nights)</label>
+                            <label for="duration" class="form-label"><i class="fa-regular fa-clock"></i>&nbsp; Duration (in nights)</label>
                             <input type="number" class="form-control" id="duration" name="duration" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Confirm Booking</button>

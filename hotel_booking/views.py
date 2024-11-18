@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.conf import settings
+from django.core.mail import send_mail
 from django.contrib import messages
 from .models import Room, Booking
 from .forms import AddRoomForm, BookingApprovalForm, RoomForm  # Import the AddRoomForm
@@ -9,6 +11,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 def admin_home(request):
     rooms = Room.objects.all()
     bookings = Booking.objects.all()
+    
     return render(request, 'hotel_booking/admin_home.html', {'rooms': rooms, 'bookings': bookings})
 def index(request):
     rooms = Room.objects.all()  # Fetch all rooms from the database
@@ -50,7 +53,15 @@ def book_room(request, room_id):
             total_cost=total_cost
         )
 
-        messages.success(request, 'Your booking was successful!')
+        # Send confirmation email
+        ''' subject = "Room Booking Confirmation"
+        message = f"Dear {name},\n\nYour booking for room {room.name} has been confirmed!\nTotal cost: ${total_cost}\n\nThank you for booking with us!"
+        from_email = settings.EMAIL_HOST_USER  # Your email address
+        recipient_list = [email]  # The user's email address
+
+        send_mail(subject, message, from_email, recipient_list)'''
+
+        messages.success(request,  'Your booking was successful!')
         return redirect('booking_success', booking_id=booking.id)
 
     return render(request, 'hotel_booking/book_room.html', {'room': room})

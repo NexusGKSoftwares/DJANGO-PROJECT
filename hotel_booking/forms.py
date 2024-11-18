@@ -10,7 +10,7 @@ class BookingForm(forms.ModelForm):
 class AddRoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['name', 'description', 'price', 'image']
+        fields = '__all__'
         
     def clean_price(self):
         price = self.cleaned_data.get('price')
@@ -20,7 +20,7 @@ class AddRoomForm(forms.ModelForm):
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['name', 'description', 'price', 'image']
+        fields = '__all__'
 
 class BookingApprovalForm(forms.ModelForm):
     class Meta:

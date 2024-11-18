@@ -5,32 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Hotel Booking{% endblock %}</title>
+    {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            padding-top: 20px;
-        }
-        .navbar {
-            margin-bottom: 20px;
-        }
+        
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">Hotel Booking</a>
+            <a class="navbar-brand" href="{% url 'index' %}"><i class="fa-solid fa-hotel"></i> &nbsp; Hotel E-Booking: Your home away from home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'available_rooms' %}">Available Rooms</a>
+                        <a class="nav-link" href="{% url 'available_rooms' %}">Available Rooms <i class="fa-solid fa-house"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="#">Contact Us &nbsp;<i class="fa-solid fa-phone"></i></a>
                     </li>
                 </ul>
             </div>
@@ -44,9 +42,29 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-4">
+    <footer>
+    <div class="footer-top d-flex justify-content-between">
+        <!-- Left Column -->
+        <div class="fnote">
+            <p><strong><em>E-Booking</em></strong></p>
+            <p>3rd Floor, Kipro Centre, Opposite Parklands Baptist Church, Sports Rd, Nairobi City</p>
+            <p>Nairobi</p>
+            <p>Phone Number: 0716608066</p>
+            <p>Website: <a href="https://www.emobilis.ac.ke/" target="_blank">https://www.emobilis.ac.ke/</a></p>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="ulinks text-end">
+            <p><strong><em>Some Useful Links</em></strong></p>
+            <p><a href="{% url 'available_rooms' %}">Available Rooms &nbsp;<i class="fa-solid fa-house"></i></a></p>
+            <p><a href="#">Contact Us &nbsp; <i class="fa-solid fa-phone"></i></a></p>
+        </div>
+    </div>
+        
+    <div class="footer-bottom text-center py-2">
         <p>&copy; 2024 Hotel Booking System | All rights reserved.</p>
-    </footer>
+    </div>
+</footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
 </body>

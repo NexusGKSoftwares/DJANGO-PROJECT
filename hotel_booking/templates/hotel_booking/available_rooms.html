@@ -4,13 +4,14 @@
 {% block title %}Available Rooms - Hotel Booking{% endblock %}
 
 {% block content %}
-    <h2 class="text-center mb-4">Available Rooms</h2>
+    <h2 class="text-center mb-4"><i class="fa-solid fa-house"></i>&nbsp;Available Rooms</h2>
 
     <div class="row">
         {% for room in rooms %}
             <div class="col-md-4">
                 <div class="card">
                     <img src="https://via.placeholder.com/400" class="card-img-top" alt="{{ room.name }}">
+                    <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ room.name }}</h5>
                         <p class="card-text">{{ room.description }}</p>
